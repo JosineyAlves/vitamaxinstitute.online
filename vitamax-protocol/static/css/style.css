@@ -589,7 +589,7 @@ small {
   color: #ffffff;
   font-family: 'Montserrat', sans-serif;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width:70%; 
+  width:80%; 
   max-width: 400px;
 }
 
@@ -612,7 +612,7 @@ small {
 
 /* Linha de cima: “De R$69,90 por” */
 .offer-line1 {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   gap: 3px;
 
@@ -620,7 +620,7 @@ small {
 
 /* Linha de baixo: “R$29,90” */
 .offer-line2 {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 800;
   margin-top: 2px;
 }
