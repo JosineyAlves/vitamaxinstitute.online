@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Diagnosis · Vitamax Institute</title>
+
+  <!-- Fonts + CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- Logo + Progress Bar -->
+  <div class="logo-container">
+    <img src="static/images/logo.png" alt="Vitamax Institute" class="logo">
+  </div>
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+<!-- ================== QUIZ STEPS 1–25 ================== -->
+
+<!-- ---------- STEP 1 ---------- -->
+<div id="quiz1" class="quiz-container">
+  <h2>How old are you?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Under 30</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>30–39</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>40–49</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>50–59</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>60 or older</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 2 ---------- -->
+<div id="quiz2" class="quiz-container" style="display:none">
+  <h2>Do you hear sounds like ringing, buzzing, or pulsing in your ears?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, constantly</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, sometimes</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I used to, but it went away</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, never</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 3 ---------- -->
+<div id="quiz3" class="quiz-container" style="display:none">
+  <h3>You’re not alone...</h3>
+  <p>You might think you’re the only one... but the truth is, millions of people suffer from this invisible sound.
+  Tinnitus silently affects your social life, sleep, and even your mental health.</p>
+  <p>You are not alone — and most importantly: <b>there is a solution.</b></p>
+  <div class="image-container">
+    <img src="static/images/etapa-3.png" alt="Illustration" class="quiz-image">
+  </div>
+  <div class="centralized-button">
+    <button class="single-button">GOT IT!</button>
+  </div>
+</div>
+
+<!-- ---------- STEP 4 ---------- -->
+<div id="quiz4" class="quiz-container" style="display:none">
+  <h2>How long have you been dealing with these sounds?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Less than 1 month</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>1 to 6 months</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>6 months to 1 year</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>More than 1 year</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 5 ---------- -->
+<div id="quiz5" class="quiz-container" style="display:none">
+  <h2>Does this sound affect your sleep or ability to concentrate?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, it disrupts me a lot</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, it bothers me a little</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, it doesn’t interfere</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I’m not sure</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 6 ---------- -->
+<div id="quiz6" class="quiz-container" style="display:none">
+  <h3>The cause might be in your medications</h3>
+  <p>For a long time, tinnitus was believed to be just a natural consequence of aging.</p>
+  <p>But recent studies show it may be linked to <b>long-term use of certain common medications</b>.</p>
+  <p>Science has already identified a silent villain.</p>
+  <div class="image-container">
+    <img src="static/images/etapa-6.png" alt="Illustration" class="quiz-image">
+  </div>
+  <div class="centralized-button">
+    <button class="single-button">GOT IT!</button>
+  </div>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your answers are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 7 ---------- -->
+<div id="quiz7" class="quiz-container" style="display:none">
+  <h2>Do you take medications regularly?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, every day</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, occasionally</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Rarely</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Never</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your answers are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 8 ---------- -->
+<div id="quiz8" class="quiz-container" style="display:none">
+  <h2>Have you taken antibiotics, aspirin, or allergy medications in the past few months?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I don't remember</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your answers are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 9 ---------- -->
+<div id="quiz9" class="quiz-container" style="display:none">
+  <h2>Do you experience dizziness, headaches, or constant stress?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, frequently</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, sometimes</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Rarely</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Never</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your answers are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 10 ---------- -->
+<div id="quiz10" class="quiz-container" style="display:none">
+  <h3>Silent Toxins: the invisible cause behind tinnitus</h3>
+  <p>Few people know this, but many common medications — like antibiotics, aspirin, and allergy pills — contain <b>ototoxic substances</b>.</p>
+  <p>These toxins build up silently and progressively: they accumulate in the inner ear, inflame the tissues, and <b>stiffen the eardrum</b>, preventing normal sound capture.</p>
+  <p>Over time, the body stops perceiving subtle frequencies, and the brain tries to compensate... <b>creating internal noises like ringing and buzzing</b>.</p>
+  <blockquote style="font-style: italic;">"I thought I was going crazy... but I discovered the problem was inside my body: toxins." — Carlos F., 58</blockquote>
+  <div class="centralized-button">
+    <button class="single-button">GOT IT!</button>
+  </div>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your answers are 100% anonymous and confidential.</p>
+</div>
+<!-- ---------- STEP 11 ---------- -->
+<div id="quiz11" class="quiz-container" style="display:none">
+  <h2>Have you had a hearing test in the past few years?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, recently</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, a while ago</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, never</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 12 ---------- -->
+<div id="quiz12" class="quiz-container" style="display:none">
+  <h2>Has a doctor ever told you there's nothing physically wrong with your ears?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, more than one</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, just one</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, they always found something</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Never went to a doctor</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 13 ---------- -->
+<div id="quiz13" class="quiz-container" style="display:none">
+  <h2>How has this affected your personal or family life?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>It pushed me away from people</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I feel embarrassed asking people to repeat things</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>My quality of life has decreased</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>It hasn’t affected me much</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 14 ---------- -->
+<div id="quiz14" class="quiz-container" style="display:none">
+  <h2>Have you tried hearing aids, sound therapy, medications, or natural solutions?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, several of them</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, but with no results</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Thought about it, but didn’t try</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, never tried</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 15 ---------- -->
+<div id="quiz15" class="quiz-container" style="display:none">
+  <h2>How do you feel about trying everything with no lasting results?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Tired and frustrated</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I still have hope</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I’ve lost faith in solutions</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I’ve never looked for solutions</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> All responses are 100% anonymous and confidential.</p>
+</div>
+<!-- ---------- STEP 16 ---------- -->
+<div id="quiz16" class="quiz-container" style="display:none">
+  <h2>Have you noticed memory or concentration difficulties lately?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, I frequently have memory lapses</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I feel like my thinking is slower</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>A little, but it could be fatigue</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I haven’t noticed anything different</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your responses to this questionnaire are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 17 ---------- -->
+<div id="quiz17" class="quiz-container" style="display:none">
+  <h3>DID YOU KNOW?</h3>
+  <h2>The root of the problem may be inside you</h2>
+  <p>Behind many cases of ringing and hearing loss, there’s a silent enemy: <b>toxins accumulated in the inner ear</b>.</p>
+  <div class="image-container">
+    <img src="static/images/etapa-17.png" alt="Illustration" class="quiz-image">
+  </div>
+  <p>These substances, often found in common medications, inflame tissues and slowly damage the eardrum.</p>
+  <p>Conventional medicine often overlooks this. But natural science has begun to uncover the truth behind this invisible threat.</p>
+  <blockquote style="font-style: italic;">"That’s when a natural discovery began to change everything..."</blockquote>
+  <div class="centralized-button">
+    <button class="single-button">I UNDERSTAND</button>
+  </div>
+</div>
+
+<!-- ---------- STEP 18 ---------- -->
+<div id="quiz18" class="quiz-container" style="display:none">
+  <h3>Scientific Discovery</h3>
+  <h2>A plant overlooked for decades might hold the key</h2>
+  <p>Researchers in natural health, backed by institutions such as <b>Harvard, Stanford, and Johns Hopkins Institute</b> in the U.S., made a surprising discovery:</p>
+  <div class="image-container">
+    <img src="static/images/etapa-18.png" alt="Illustration" class="quiz-image">
+  </div>
+  <p>An ancient plant called <b>moringa</b> has shown strong potential to <b>neutralize ototoxic toxins</b> that silently build up in the human ear.</p>
+  <p>Recent studies show its active compounds <b>target microscopic inflammation in the auditory system</b>, helping restore eardrum flexibility and protecting the brain from <b>sensory overload damage</b>.</p>
+  <blockquote style="font-style: italic;">"This might be the natural key to breaking the cycle of auditory intoxication and restoring hearing."</blockquote>
+  <div class="centralized-button">
+    <button class="single-button">I UNDERSTAND</button>
+  </div>
+</div>
+
+<!-- ---------- STEP 19 ---------- -->
+<div id="quiz19" class="quiz-container" style="display:none">
+  <h2>Were you already aware of moringa’s benefits for hearing and brain health?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, I was</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I’ve heard of it</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, it’s new to me</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your responses to this questionnaire are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 20 ---------- -->
+<div id="quiz20" class="quiz-container" style="display:none">
+  <h3>What makes moringa so powerful for your ears?</h3>
+  <p>Moringa acts as a <b>powerful natural antioxidant and anti-inflammatory</b>. In the auditory system, it:</p>
+  <div class="highlight-options">
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i> Neutralizes toxins from common medications</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i> Reduces inflammation in the inner ear</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i> Restores eardrum flexibility</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i> Shields the brain from sensory overload</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i> Improves focus, memory, and even sleep</li>
+  </div>
+  <div class="centralized-button">
+    <button class="single-button">I UNDERSTAND</button>
+  </div>
+</div>
+<!-- ---------- STEP 21 ---------- -->
+<div id="quiz21" class="quiz-container" style="display:none">
+  <h2>Discover the Vitamax Protocol</h2>
+  <p>Based on these discoveries, we created the Vitamax Protocol:</p>
+  <div class="highlight-options">
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i>Neutralizes ototoxic toxins</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i>Reduces ringing in the ears</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i>Restores hearing capacity</li>
+    <li class="highlight-option"><i class="fa-regular fa-circle-check check-icon"></i>Improves memory and focus</li>
+  </div>
+  <p>It only takes <b>2 minutes a day</b> to start your transformation.</p>
+  <div class="centralized-button">
+    <button class="single-button">GOT IT!</button>
+  </div>
+</div>
+
+<!-- ---------- STEP 22 ---------- -->
+<div id="quiz22" class="quiz-container" style="display:none">
+  <h2>Would you be willing to spend 2 minutes a day to improve your hearing?</h2>
+  <ul>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Yes, definitely</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>Maybe, depending on what it is</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>I'm not sure</li>
+    <li class="quiz-option" data-next><span class="selection-circle"></span>No, I’m skeptical</li>
+  </ul>
+  <p class="privacy-warning"><b>Privacy Notice:</b> Your responses are 100% anonymous and confidential.</p>
+</div>
+
+<!-- ---------- STEP 23 ---------- -->
+<div id="quiz23" class="quiz-container" style="display:none">
+  <h2>What are people saying?</h2>
+  <div class="highlight-options">
+    <li class="highlight-option"><em>Marcos P. – “The ringing vanished in 2 weeks. It felt like a jackhammer was lifted from inside my ear.”</em></li>
+    <li class="highlight-option"><em>Ana L. – “I thought it was just old age... but now I can even hear the sound of the wind. Thank you, Vitamax Protocol!”</em></li>
+    <li class="highlight-option"><em>Laura M. – “I thought it would be complicated, but it’s super simple. I do it at home while watching TV. I noticed a difference within weeks!”</em></li>
+    <li class="highlight-option"><em>Daniel S. – “I had tried everything and was skeptical. But with the Vitamax Protocol, my tinnitus noticeably improved in under a month!”</em></li>
+  </div>
+  <div class="centralized-button">
+    <button class="single-button">GOT IT!</button>
+  </div>
+</div>
+
+<!-- ---------- STEP 24 (Loading) ---------- -->
+<div id="quiz24" class="quiz-container" style="display:none">
+  <h2>Analyzing your answers...</h2>
+  <em>Generating your personalized hearing restoration plan...</em>
+  <div class="progress-bar-container">
+    <div class="progress-bar-animated" id="animated-progress-bar"></div>
+    <div class="progress-text" id="progress-text">0%</div>
+  </div>
+</div>
+
+<!-- ---------- STEP 25 (Results) ---------- -->
+<div id="quiz25" class="quiz-container" style="display:none">
+  <h2>HEARING DIAGNOSIS: TOXIN LEVEL</h2>
+  <p>Based on your answers, we've identified a critical level of ototoxic toxin buildup in your auditory system.</p>
+  <img src="static/images/Termometro.png" alt="Thermometer" style="display: block; margin: 20px auto; max-width: 100%; width: 100%; height: auto;" />
+
+  <p><b>⚠️ Safe level of auditory toxins:</b> up to 80 points<br><b>❌ Your current level:</b> 280 points</p>
+  <p>This is more than 3 times the safe limit for the human ear. These are not just numbers — they represent real damage that is already affecting your hearing health.</p>
+
+  <!-- Icon 1 -->
+  <div class="result-container bloco-1">
+    <div class="result-header">
+      <div class="icon-container">
+        <img src="static/images/icon-1.png" alt="Icon 1" class="result-icon" />
+      </div>
+      <div class="title-score-container">
+        <h1 class="result-title">Ototoxic Intoxication</h1>
+        <div class="result-score">9/10</div>
+      </div>
+    </div>
+    <div class="paragraph-list">
+      <p>Your exposure to ototoxic substances from medications is high. These toxins inflame the inner ear and stiffen the eardrum, drastically impairing your ability to hear clearly.</p>
+    </div>
+  </div>
+
+  <!-- Icon 2 -->
+  <div class="result-container bloco-2">
+    <div class="result-header">
+      <div class="icon-container">
+        <img src="static/images/icon-2.png" alt="Icon 2" class="result-icon" />
+      </div>
+      <div class="title-score-container">
+        <h1 class="result-title">Eardrum Flexibility</h1>
+        <div class="result-score">8/10</div>
+      </div>
+    </div>
+    <div class="paragraph-list">
+      <p>You reported symptoms like ringing, buzzing, and progressive hearing loss. This suggests your eardrum has lost its natural elasticity, causing distorted or muffled sounds.</p>
+    </div>
+  </div>
+
+  <!-- Icon 3 -->
+  <div class="result-container bloco-3">
+    <div class="result-header">
+      <div class="icon-container">
+        <img src="static/images/icon-3.png" alt="Icon 3" class="result-icon" />
+      </div>
+      <div class="title-score-container">
+        <h1 class="result-title">Neurological Stress</h1>
+        <div class="result-score">7/10</div>
+      </div>
+    </div>
+    <div class="paragraph-list">
+      <p>The stress caused by constant noise puts your brain in a constant state of alert. This can lead to insomnia, anxiety, irritability, memory issues, and trouble concentrating.</p>
+    </div>
+  </div>
+
+  <!-- Icon 4 -->
+  <div class="result-container bloco-4">
+    <div class="result-header">
+      <div class="icon-container">
+        <img src="static/images/icon-4.png" alt="Icon 4" class="result-icon" />
+      </div>
+      <div class="title-score-container">
+        <h1 class="result-title">Auditory Defenses</h1>
+        <div class="result-score">8/10</div>
+      </div>
+    </div>
+    <div class="paragraph-list">
+      <p>Your auditory immune system is compromised. Instead of fighting off toxins, it's worsening inflammation, accelerating hearing loss, and intensifying constant ringing.</p>
+    </div>
+  </div>
+
+  <h2>FINAL ANALYSIS:</h2>
+  <p>Your ears are under constant invisible attacks. This diagnosis points to <b>advanced intoxication</b>, chronic inflammation, and a real risk of permanent hearing loss.</p>
+  <p>The ringing you're hearing is just the tip of the iceberg — a sign that internal damage is already advanced.</p>
+  <p>If you don’t act now, the risk of <b>permanent hearing loss, mental fog, and worsening symptoms</b> will only increase.</p>
+  <p>But the good news is, you're still in time to reverse this — <b>and that starts with the next step.</b></p>
+
+  <a href="https://institutevitamax.com/vitamax-protocol" class="button">RESTORE YOUR<br />HEARING NOW</a>
+  <h2><em>Discover the natural solution recommended by specialists</em></h2>
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <p>© 2025 Vitamax Institute – All rights reserved.</p>
+    <p>contact@institutevitamax.com</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a><span>|</span><a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+</div><!-- /.container -->
+
+<!-- ================== SCRIPT ================== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const maxSteps = 25;
+  let current = 1;
+
+  const qs = s => document.querySelector(s);
+  const $id = n => document.getElementById('quiz' + n);
+
+  const show = n => $id(n).style.display = 'block';
+  const hide = n => $id(n).style.display = 'none';
+
+  const bar = qs('#progress-bar');
+
+  /* ------------ Main progress bar ------------ */
+  const updateBar = () =>
+    bar.style.width = ((current - 1) / (maxSteps - 1)) * 100 + '%';
+
+  /* ------------ Move to the next step ------------ */
+  const next = () => {
+    if (current >= maxSteps) return;
+    hide(current);
+    show(++current);
+    updateBar();
+  };
+
+  /* ------------ Special transition (#23 → #24 → #25) ------------ */
+  const loadingStep = () => {
+    hide(current);
+    current++;
+    show(24); // shows loading screen
+    updateBar();
+
+    const barAnim = qs('#animated-progress-bar');
+    const txt = qs('#progress-text');
+    const dur = 5000; // 5 seconds
+    const t0 = performance.now();
+
+    (function anim(now) {
+      const p = Math.min(((now - t0) / dur) * 100, 100);
+
+      barAnim.style.width = p + '%';
+
+      /* ----------- Change text once it reaches 100% ----------- */
+      txt.textContent = (p < 100) ? p.toFixed(0) + '%' : 'Complete';
+
+      if (p < 100) {
+        requestAnimationFrame(anim);
+      } else {
+        /* small pause then move to step 25 */
+        setTimeout(() => {
+          hide(24);
+          show(++current);
+          updateBar();
+        }, 800);
+      }
+    })(performance.now());
+  };
+
+  /* ------------ Click delegation ------------ */
+  document.body.addEventListener('click', ev => {
+    if (ev.target.closest('.quiz-option')) { // click on an option
+      next();
+      return;
+    }
+    if (ev.target.closest('.single-button')) { // click on “GOT IT”
+      current === 23 ? loadingStep() : next();
+    }
+  });
+
+  /* Initial State */
+  show(1);
+  updateBar(); // progress bar starts at 0%
+});
+</script>
+
+</body>
+</html>
+
+
+
