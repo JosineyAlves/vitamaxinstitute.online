@@ -1,166 +1,203 @@
 <!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <title>Gracias - Mente Viva</title>
-  <style>
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: radial-gradient(circle, #d8071c 0%, #000000 100%);
-  color: #ffffff;
-  line-height: 1.6;
-}
-
-
-
-    .pre-headline {
-      background-color: #d72638;
-      color: #ffffff;
-      text-align: center;
-      padding: 15px 20px;
-      font-size: 18px;
-      font-weight: 500;
-      text-transform: uppercase;
-      line-height: 1.5;
-      font-style: italic;
-
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .headline {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 40px;
-      color: #004c5e;
-      line-height: 1;
-      text-transform: uppercase;
-
-    }
-
-    .credencial {
-      background-color: #d1edf7;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      text-align: center;
-      font-size: 18px;
-      color: #004c5e;
-      line-height: 1.5;
-      margin-top: 40px;
-    }
-
-    .credencial strong {
-      color: #004c5e;
-    }
-
-    @media (max-width: 768px) {
-      .headline {
-        font-size: 24px;
-      }
-
-      .credencial {
-        font-size: 16px;
-        padding: 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="pre-headline">
-    ¡No cierres ni actualices esta página! Esto puede causar problemas con tu pedido.
-  </div>
-
-  <div class="container">
-    <div class="headline">
-      Vea cómo acceder al Protocolo Vitamax en el siguiente vídeo
-    </div>
-
-    <div>
-      <div id="vid_681df12e89a479e33f9b6eea" style="position: relative; width: 100%; padding: 178.21782178217822% 0 0;"> <img id="thumb_681df12e89a479e33f9b6eea" src="https://images.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> <div id="backdrop_681df12e89a479e33f9b6eea" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div> </div> <script type="text/javascript" id="scr_681df12e89a479e33f9b6eea"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/player.js", s.async=!0,document.head.appendChild(s); </script>
-    </div>
-    
-    <div class="credencial">
-      El <strong>Instituto Vitamax</strong> es uno de los principales centros de investigación natural en salud auditiva, especializado en la recuperación contra el zumbido en los oídos y la pérdida de audición. Con miles de clientes satisfechos en todo el mundo, nuestro compromiso es ofrecer soluciones naturales, seguras y comprobadas para restaurar tu calidad de vida.
-    </div>
-  </div>
-  <style>.esconder { display: none }</style>
-
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function() {
-/* ALTERE O VALOR 10 PARA OS SEGUNDOS EM QUE AS SEÇÕES VÃO APARECER */
-    var SECONDS_TO_DISPLAY = 235;
-    var CLASS_TO_DISPLAY = ".esconder";
-/* DAQUI PARA BAIXO NAO PRECISA ALTERAR */
-    var EXPIRATION_DAYS = 14;
-    var alreadyDisplayedKey = "alreadyElsDisplayed" + SECONDS_TO_DISPLAY;
-    var elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
-    var elsDisplayed = false;
-    var attempts = 0;
-
-    class StorageHandler {
-        static expiryTime = EXPIRATION_DAYS * 86400000;
-
-        static set(key, value) {
-            localStorage.setItem(
-                key,
-                JSON.stringify({ value, expiry: Date.now() + this.expiryTime })
-            );
-        }
-
-        static get(key) {
-            var item = localStorage.getItem(key);
-            if (!item) return null;
-
-            var { value, expiry } = JSON.parse(item);
-            if (Date.now() > expiry) {
-                localStorage.removeItem(key);
-                return null;
-            }
-            return value;
-        }
-    }
-
-    var alreadyElsDisplayed = StorageHandler.get(alreadyDisplayedKey);
-
-    var showHiddenElements = function () {
-        elsDisplayed = true;
-        elsHidden.forEach((e) => e.style.display = "block");
-        StorageHandler.set(alreadyDisplayedKey, true);
-    };
-
-    var startWatchVideoProgress = function () {
-        if (typeof smartplayer === 'undefined' || !(smartplayer.instances && smartplayer.instances.length)) {
-            if (attempts >= 10) return;
-            attempts++;
-            return setTimeout(startWatchVideoProgress, 1000);
-        }
-        smartplayer.instances[0].on('timeupdate', () => {
-            if (elsDisplayed || smartplayer.instances[0].smartAutoPlay) return;
-            if (smartplayer.instances[0].video.currentTime < SECONDS_TO_DISPLAY) return;
-            showHiddenElements();
-        });
-    };
-
-    if (alreadyElsDisplayed) {
-        setTimeout(showHiddenElements, 100);
-    } else {
-        startWatchVideoProgress();
-    }
-});
-</script>
-
-</body>
-
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+		<title>Presentation...</title>
+		<style>
+			body {
+			margin: 0;
+			font-family: 'Montserrat', sans-serif;
+			background: radial-gradient(circle, #d8071c 0%, #000000 100%);
+			color: #ffffff;
+			line-height: 1.6;
+			}
+			.live-status {
+			background-color: #000;
+			color: #ffffff;
+			text-align: center;
+			padding: 15px 20px;
+			font-size: 16px;
+			font-weight: 500;
+			font-style: italic;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+			white-space: nowrap;
+			}
+			.live-dot {
+			position: relative;
+			width: 12px;
+			height: 12px;
+			background-color: #28a745;
+			border-radius: 50%;
+			margin-right: 6px;
+			}
+			.live-dot::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			background-color: rgba(40, 167, 70, 0.678);
+			transform: translate(-50%, -50%) scale(1);
+			animation: pulse-ring 1.5s infinite;
+			z-index: 0;
+			}
+			@keyframes pulse-ring {
+			0% {
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 0.6;
+			}
+			70% {
+			transform: translate(-50%, -50%) scale(3.5);
+			opacity: 0;
+			}
+			100% {
+			transform: translate(-50%, -50%) scale(3.5);
+			opacity: 0;
+			}
+			}
+			.container {
+			max-width: 800px;
+			margin: 20px auto;
+			padding: 20px;
+			}
+			.credencial.teaser-lead {
+			background-color: #1a1a1a;
+			color: #f2f2f2;
+			padding: 25px;
+			border-left: 4px solid #28a745;
+			border-radius: 8px;
+			font-size: 16px;
+			line-height: 1.6;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+			margin-top: 40px;
+			}
+			.credencial.teaser-lead strong {
+			color: #28a745;
+			font-weight: 700;
+			}
+			.credencial {
+			font-size: 16px;
+			padding: 20px;
+			}
+			}
+		</style>
+		<script
+			src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+			data-utmify-prevent-xcod-sck
+			data-utmify-is-click-bank
+			async
+			defer
+			></script>  
+	</head>
+	<body>
+		<div class="live-status">
+			<span class="live-dot"></span>
+			<span id="viewer-count">1398</span> people are watching right now
+		</div>
+		</div>
+		<div class="container">
+			<div>
+				<div id="vid_681df12e89a479e33f9b6eea" style="position: relative; width: 100%; padding: 178.21782178217822% 0 0;">
+					<img id="thumb_681df12e89a479e33f9b6eea" src="https://images.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> 
+					<div id="backdrop_681df12e89a479e33f9b6eea" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div>
+				</div>
+				<script type="text/javascript" id="scr_681df12e89a479e33f9b6eea"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/player.js", s.async=!0,document.head.appendChild(s); </script>
+			</div>
+			<div class="credencial teaser-lead">
+				<strong>NOTE:</strong>  In the next few minutes, you’ll discover the truth about why your erections have weakened…  
+				Why your size might not be what it could have been…  
+				And how a simple root — once used by tribal elders and ignored by modern medicine —  
+				is restoring power, size, and dominance to thousands of men over 50.  
+				<br><br>
+				<u>Don’t blink. Don’t pause. Keep watching.</u>  
+				What comes next might change your manhood forever.
+			</div>
+		</div>
+		<style>.esconder { display: none }</style>
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function() {
+			/* ALTERE O VALOR 10 PARA OS SEGUNDOS EM QUE AS SEÇÕES VÃO APARECER */
+			    var SECONDS_TO_DISPLAY = 235;
+			    var CLASS_TO_DISPLAY = ".esconder";
+			/* DAQUI PARA BAIXO NAO PRECISA ALTERAR */
+			    var EXPIRATION_DAYS = 14;
+			    var alreadyDisplayedKey = "alreadyElsDisplayed" + SECONDS_TO_DISPLAY;
+			    var elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
+			    var elsDisplayed = false;
+			    var attempts = 0;
+			
+			    class StorageHandler {
+			        static expiryTime = EXPIRATION_DAYS * 86400000;
+			
+			        static set(key, value) {
+			            localStorage.setItem(
+			                key,
+			                JSON.stringify({ value, expiry: Date.now() + this.expiryTime })
+			            );
+			        }
+			
+			        static get(key) {
+			            var item = localStorage.getItem(key);
+			            if (!item) return null;
+			
+			            var { value, expiry } = JSON.parse(item);
+			            if (Date.now() > expiry) {
+			                localStorage.removeItem(key);
+			                return null;
+			            }
+			            return value;
+			        }
+			    }
+			
+			    var alreadyElsDisplayed = StorageHandler.get(alreadyDisplayedKey);
+			
+			    var showHiddenElements = function () {
+			        elsDisplayed = true;
+			        elsHidden.forEach((e) => e.style.display = "block");
+			        StorageHandler.set(alreadyDisplayedKey, true);
+			    };
+			
+			    var startWatchVideoProgress = function () {
+			        if (typeof smartplayer === 'undefined' || !(smartplayer.instances && smartplayer.instances.length)) {
+			            if (attempts >= 10) return;
+			            attempts++;
+			            return setTimeout(startWatchVideoProgress, 1000);
+			        }
+			        smartplayer.instances[0].on('timeupdate', () => {
+			            if (elsDisplayed || smartplayer.instances[0].smartAutoPlay) return;
+			            if (smartplayer.instances[0].video.currentTime < SECONDS_TO_DISPLAY) return;
+			            showHiddenElements();
+			        });
+			    };
+			
+			    if (alreadyElsDisplayed) {
+			        setTimeout(showHiddenElements, 100);
+			    } else {
+			        startWatchVideoProgress();
+			    }
+			});
+		</script>
+		<script>
+			const viewerElement = document.getElementById("viewer-count");
+			let baseViewers = 1398;
+			
+			function fluctuateViewers() {
+			  const change = Math.random() < 0.85
+			    ? Math.floor(Math.random() * 3) + 1     // 1–3 entram
+			    : -Math.floor(Math.random() * 2);       // -1 ou -2 saem (15% das vezes)
+			
+			  baseViewers = Math.max(1300, baseViewers + change);
+			  viewerElement.textContent = baseViewers;
+			}
+			
+			setInterval(fluctuateViewers, 6000); // atualiza a cada 6s
+		</script>
+	</body>
 </html>
