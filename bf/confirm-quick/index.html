@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Age Confirmation</title>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+		<style>
+			body {
+			margin: 0;
+			font-family: 'Montserrat', sans-serif;
+			background-color: #ffffff;
+			color: #222;
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+			}
+			.container {
+			max-width: 600px;
+			margin: auto;
+			padding: 40px 20px;
+			text-align: center;
+			}
+			h1 {
+			font-size: 28px;
+			font-weight: 700;
+			margin-bottom: 20px;
+			}
+			h2 {
+			font-size: 20px;
+			font-weight: 600;
+			margin-bottom: 40px;
+			color: #444;
+			}
+			.btn {
+			background-color: #28a745; /* verde de confirmação */
+			color: white;
+			padding: 15px 45px;
+			font-size: 22px;
+			font-weight: 600;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+			animation: pulse 1.5s infinite;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+			}
+			.btn:hover {
+			background-color: #1c40b7;
+			transform: scale(1.02);
+			}
+			footer {
+			margin-top: auto;
+			padding: 20px;
+			text-align: center;
+			font-size: 13px;
+			color: #666;
+			background-color: #ffffff;
+			}
+			footer a {
+			margin: 0 10px;
+			color: #666;
+			text-decoration: none;
+			}
+			footer a:hover {
+			text-decoration: underline;
+			}
+			@media (max-width: 480px) {
+			h1 {
+			font-size: 22px;
+			}
+			h2 {
+			font-size: 18px;
+			}
+			.btn {
+			width: 100%;
+			}
+			}
+			@keyframes pulse {
+			0% {
+			box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.5);
+			}
+			70% {
+			box-shadow: 0 0 0 12px rgba(40, 167, 69, 0);
+			}
+			100% {
+			box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+			}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Hang Tight… We’re getting things ready for you.</h1>
+			<h2>Please confirm your age to continue to the presentation.</h2>
+			<button class="btn">YES, I’M 40+</button>
+		</div>
+		<footer>
+			<a href="privacy.html">Privacy Policy</a> | 
+			<a href="terms.html">Terms of Service</a>
+			<p style="margin-top: 10px;">This site is not a part of Google or any of its affiliated platforms. This site is not endorsed by Google in any way. Google and the Google logo are trademarks of Google LLC.</p>
+		</footer>
+	</body>
+</html>

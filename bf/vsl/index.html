@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <title>Gracias - Mente Viva</title>
+  <style>
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: radial-gradient(circle, #d8071c 0%, #000000 100%);
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+
+
+    .pre-headline {
+      background-color: #d72638;
+      color: #ffffff;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 18px;
+      font-weight: 500;
+      text-transform: uppercase;
+      line-height: 1.5;
+      font-style: italic;
+
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 40px;
+      color: #004c5e;
+      line-height: 1;
+      text-transform: uppercase;
+
+    }
+
+    .credencial {
+      background-color: #d1edf7;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      font-size: 18px;
+      color: #004c5e;
+      line-height: 1.5;
+      margin-top: 40px;
+    }
+
+    .credencial strong {
+      color: #004c5e;
+    }
+
+    @media (max-width: 768px) {
+      .headline {
+        font-size: 24px;
+      }
+
+      .credencial {
+        font-size: 16px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="pre-headline">
+    ¡No cierres ni actualices esta página! Esto puede causar problemas con tu pedido.
+  </div>
+
+  <div class="container">
+    <div class="headline">
+      Vea cómo acceder al Protocolo Vitamax en el siguiente vídeo
+    </div>
+
+    <div>
+      <div id="vid_681df12e89a479e33f9b6eea" style="position: relative; width: 100%; padding: 178.21782178217822% 0 0;"> <img id="thumb_681df12e89a479e33f9b6eea" src="https://images.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/thumbnail.jpg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block;" alt="thumbnail"> <div id="backdrop_681df12e89a479e33f9b6eea" style=" -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); position: absolute; top: 0; height: 100%; width: 100%; "></div> </div> <script type="text/javascript" id="scr_681df12e89a479e33f9b6eea"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/528ac277-8029-4ec6-a3db-8da993dd5d9a/players/681df12e89a479e33f9b6eea/player.js", s.async=!0,document.head.appendChild(s); </script>
+    </div>
+    
+    <div class="credencial">
+      El <strong>Instituto Vitamax</strong> es uno de los principales centros de investigación natural en salud auditiva, especializado en la recuperación contra el zumbido en los oídos y la pérdida de audición. Con miles de clientes satisfechos en todo el mundo, nuestro compromiso es ofrecer soluciones naturales, seguras y comprobadas para restaurar tu calidad de vida.
+    </div>
+  </div>
+  <style>.esconder { display: none }</style>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+/* ALTERE O VALOR 10 PARA OS SEGUNDOS EM QUE AS SEÇÕES VÃO APARECER */
+    var SECONDS_TO_DISPLAY = 235;
+    var CLASS_TO_DISPLAY = ".esconder";
+/* DAQUI PARA BAIXO NAO PRECISA ALTERAR */
+    var EXPIRATION_DAYS = 14;
+    var alreadyDisplayedKey = "alreadyElsDisplayed" + SECONDS_TO_DISPLAY;
+    var elsHidden = document.querySelectorAll(CLASS_TO_DISPLAY);
+    var elsDisplayed = false;
+    var attempts = 0;
+
+    class StorageHandler {
+        static expiryTime = EXPIRATION_DAYS * 86400000;
+
+        static set(key, value) {
+            localStorage.setItem(
+                key,
+                JSON.stringify({ value, expiry: Date.now() + this.expiryTime })
+            );
+        }
+
+        static get(key) {
+            var item = localStorage.getItem(key);
+            if (!item) return null;
+
+            var { value, expiry } = JSON.parse(item);
+            if (Date.now() > expiry) {
+                localStorage.removeItem(key);
+                return null;
+            }
+            return value;
+        }
+    }
+
+    var alreadyElsDisplayed = StorageHandler.get(alreadyDisplayedKey);
+
+    var showHiddenElements = function () {
+        elsDisplayed = true;
+        elsHidden.forEach((e) => e.style.display = "block");
+        StorageHandler.set(alreadyDisplayedKey, true);
+    };
+
+    var startWatchVideoProgress = function () {
+        if (typeof smartplayer === 'undefined' || !(smartplayer.instances && smartplayer.instances.length)) {
+            if (attempts >= 10) return;
+            attempts++;
+            return setTimeout(startWatchVideoProgress, 1000);
+        }
+        smartplayer.instances[0].on('timeupdate', () => {
+            if (elsDisplayed || smartplayer.instances[0].smartAutoPlay) return;
+            if (smartplayer.instances[0].video.currentTime < SECONDS_TO_DISPLAY) return;
+            showHiddenElements();
+        });
+    };
+
+    if (alreadyElsDisplayed) {
+        setTimeout(showHiddenElements, 100);
+    } else {
+        startWatchVideoProgress();
+    }
+});
+</script>
+
+</body>
+
+</html>
