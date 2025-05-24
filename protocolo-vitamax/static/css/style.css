@@ -437,6 +437,26 @@ img {
   display: block;
 }
 
+.testimonial-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.testimonial-image {
+  width: 350px;
+  height: 466px; /* 3:4 ratio */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.testimonial-text {
+  max-width: 500px;
+}
+
 .testimonial-text p {
   font-size: 18px;
   font-style: italic;
@@ -446,7 +466,7 @@ img {
 
 .rating {
   font-size: 20px;
-  color: #FFD700; /* amarelo dourado para as estrelas */
+  color: #FFD700;
   margin-bottom: 5px;
 }
 
