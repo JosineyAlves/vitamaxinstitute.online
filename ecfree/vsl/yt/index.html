@@ -254,25 +254,5 @@
 				</div>
 			</div>
 		</footer>
-		<!-- Cookie Consent Banner -->
-		<div id="cookie-banner" style="position: fixed; bottom: 0; width: 100%; background-color: #004c5e; color: #ffffff; padding: 15px 20px; font-size: 14px; z-index: 1000; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-			<div style="flex: 1 1 auto;">
-				This site uses cookies to improve your experience. By continuing, you agree to our 
-				<a href="privacy.html" target="_blank" style="color: #d1edf7; text-decoration: underline;">Privacy Policy</a>.
-			</div>
-			<button onclick="acceptCookies()" style="background-color: #d72638; border: none; color: white; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px;">OK</button>
-		</div>
-		<script>
-			function acceptCookies() {
-			  document.getElementById('cookie-banner').style.display = 'none';
-			  localStorage.setItem('cookiesAccepted', 'true');
-			}
-			
-			window.onload = function () {
-			  if (localStorage.getItem('cookiesAccepted') === 'true') {
-			    document.getElementById('cookie-banner').style.display = 'none';
-			  }
-			};
-		</script>
 	</body>
 </html>
