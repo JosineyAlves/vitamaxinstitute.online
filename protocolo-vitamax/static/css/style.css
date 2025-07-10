@@ -78,8 +78,7 @@ img {
 }
 
 .chart-section img {
-  border-radius: 10px;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 .chart-section {
@@ -104,12 +103,11 @@ img {
   padding: 15px 20px;
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .combo-title h2 {
   font-size: 20px;
-  color: #9b6405; /* Marrom/dourado forte */
+  color: #333333; /* Marrom/dourado forte */
   font-weight: 700;
   margin: 0;
   text-transform: uppercase;
@@ -122,7 +120,7 @@ img {
 }
 
 .chart-section2 .chart {
-  max-width: 800px;
+  max-width: 400px;
   width: 100%;
   height: auto;
   display: block;
@@ -495,10 +493,11 @@ small {
 .offer-header {
   background-color: #FFCE00; 
   color: #222222;
-  padding: 10px;
+  padding: 15px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
+    line-height: 1.4;
 }
 
 .offer-body {
@@ -506,7 +505,7 @@ small {
 }
 
 .old-price {
-  font-size: 18px;
+  font-size: 22px;
   margin-bottom: 5px;
   color: #cccccc; 
 }
@@ -541,7 +540,7 @@ small {
 }
 
 .offer-disclaimer {
-  font-size: 14px;
+  font-size: 22px;
   color: #cccccc;
   margin-top: 20px;
 }

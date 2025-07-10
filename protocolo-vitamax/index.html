@@ -286,7 +286,6 @@
     
     <div class="testimonial-slide active">
       <div class="testimonial-content">
-        <img src="static/images/carlos.png" alt="Carlos M." class="testimonial-image" />
         <div class="testimonial-text">
           <p>"Después de 3 semanas, el zumbido disminuyó muchísimo. Ahora puedo dormir en paz."</p>
           <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -297,7 +296,6 @@
 
 		    <div class="testimonial-slide">
       <div class="testimonial-content">
-        <img src="static/images/roman.png" alt="Roman T." class="testimonial-image" />
         <div class="testimonial-text">
           <p>“Parece mentira… todo esto por un precio tan bajo. Pero de verdad funcionó.”</p>
           <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -308,7 +306,6 @@
 
     <div class="testimonial-slide">
       <div class="testimonial-content">
-        <img src="static/images/ana.png" alt="Ana Paula F." class="testimonial-image" />
         <div class="testimonial-text">
           <p>"Pensé que viviría siempre con ese ruido... pero ahora mi cabeza volvió al silencio. ¡Gracias!"</p>
           <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -319,7 +316,6 @@
 
     <div class="testimonial-slide">
       <div class="testimonial-content">
-        <img src="static/images/joao.png" alt="João F." class="testimonial-image" />
         <div class="testimonial-text">
           <p>"Mejoré mi audición y mi memoria al mismo tiempo. ¡No creí que fuera posible!"</p>
           <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -330,7 +326,6 @@
 
     <div class="testimonial-slide">
       <div class="testimonial-content">
-        <img src="static/images/mariana.png" alt="Mariana T." class="testimonial-image" />
         <div class="testimonial-text">
           <p>"Recuperé mi libertad. Puedo trabajar y dormir sin ese sonido constante de fondo."</p>
           <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -344,7 +339,7 @@
 
 <div class="combo-destacado" id="oferta">
   <div class="combo-title">
-    <h2>⚠️ Solo Hoy: ¡Aprovecha el Combo Especial con Condiciones Exclusivas!</h2>
+    <h2>⚠️ Obtenga ahora su guía completa <strong>"Protocolo Vitamax"</strong></h2>
   </div>
   <div class="chart-section2">
     <img src="static/images/mockup.png" alt="Mockup" class="chart chart-section2-img" />
@@ -353,7 +348,7 @@
 
 			<!-- Bloque de Oferta -->
 			<div class="offer-block">
-				<div class="offer-header">Inscríbete ahora mismo</div>
+				<div class="offer-header">Inscríbete ahora mismo <br> Últimos <strong id="stock-counter" style="font-size: 22px; color: #ff1900; font-weight: 800;">21</strong> ejemplares disponibles</div>
 				<div class="offer-body">
 					<p class="old-price">De $37 por solo</p>
 					<h2 class="current-price">$9,00</h2>
@@ -494,9 +489,24 @@
       });
     }
   });
+  let stock = 21;
+  const minStock = 3;
+  const counterElement = document.getElementById("stock-counter");
+
+  function decreaseStock() {
+    if (stock > minStock) {
+      stock--;
+      counterElement.innerText = stock;
+
+      // Próxima redução entre 3 e 4 segundos
+      const nextDelay = Math.floor(Math.random() * 1000) + 3000; // 3000–4000ms
+      setTimeout(decreaseStock, nextDelay);
+    }
+  }
+
+  // Iniciar contagem
+  setTimeout(decreaseStock, 3000); // Primeira redução em 3s
 </script>
-
-
 
 	</body>
 </html>
