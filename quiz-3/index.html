@@ -480,20 +480,6 @@ document.body.addEventListener('click', ev => {
 			  updateBar(); // barra ao 0%
 			});
 
-			function trackQuizStep(stepNumber, selectedOption) {
-  fetch('http://localhost:3000/api/track', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      step: stepNumber,
-      answer: selectedOption,
-      timestamp: new Date().toISOString(),
-      utmSource: new URLSearchParams(window.location.search).get('utm_source'),
-      userId: getAnonymousUserId(), // pode ser via localStorage
-    })
-  });
-}
-
 		</script>
 		<script>
   const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
