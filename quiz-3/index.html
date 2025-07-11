@@ -511,22 +511,22 @@ document.body.addEventListener('click', ev => {
 
   // Função que envia dados para o Supabase
   function trackQuizStep(stepNumber, selectedOption) {
-    fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_KEY,
-        'Authorization': `Bearer ${SUPABASE_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({
-        user_id: getAnonymousUserId(),
-        step: stepNumber,
-        answer: selectedOption,
-        utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
-      })
-    }).catch(err => console.error('Erro ao enviar para Supabase:', err));
-  }
+fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
+  method: 'POST',
+  headers: {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`, // <- ESSA LINHA É ESSENCIAL
+    'Content-Type': 'application/json',
+    'Prefer': 'return=minimal'
+  },
+  body: JSON.stringify({
+    user_id: getAnonymousUserId(),
+    step: stepNumber,
+    answer: selectedOption,
+    utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+  })
+});
+
 </script>
 
 	</body>
