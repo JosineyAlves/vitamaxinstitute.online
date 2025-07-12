@@ -403,124 +403,137 @@
 			  const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
 			  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
 			
-			  function getAnonymousUserId() {
-			    let uid = localStorage.getItem('quiz_uid');
-			    if (!uid) {
-			      uid = 'uid-' + Math.random().toString(36).substring(2, 12);
-			      localStorage.setItem('quiz_uid', uid);
-			    }
-			    return uid;
-			  }
+			    function getCookie(name) {
+			 const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+			 return match ? match[2] : null;
+			}
 			
-			  function trackQuizStep(stepNumber, selectedOption) {
-			    fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
-			      method: 'POST',
-			      headers: {
-			        'apikey': SUPABASE_KEY,
-			        'Authorization': `Bearer ${SUPABASE_KEY}`,
-			        'Content-Type': 'application/json',
-			        'Prefer': 'return=minimal'
-			      },
-			      body: JSON.stringify({
-			        user_id: getAnonymousUserId(),
-			        step: stepNumber,
-			        answer: selectedOption,
-			        utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
-			      })
-			    }).catch(err => console.error('Erro ao enviar para Supabase:', err));
-			  }
+			function getAnonymousUserId() {
+			 let uid = localStorage.getItem('quiz_uid') || getCookie('quiz_uid');
+			 if (!uid) {
+			   uid = 'uid-' + Math.random().toString(36).substring(2, 12);
+			   try { localStorage.setItem('quiz_uid', uid); } catch (e) {}
+			   document.cookie = `quiz_uid=${uid}; path=/; max-age=31536000`;
+			 }
+			 return uid;
+			}
 			
-			  const maxSteps = 24;
-			  let current = 1;
+			function trackQuizStep(stepNumber, selectedOption) {
+			 const payload = {
+			   user_id: getAnonymousUserId(),
+			   step: stepNumber,
+			   answer: selectedOption,
+			   utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+			 };
 			
-			  const qs = s => document.querySelector(s);
-			  const $id = n => document.getElementById('quiz' + n);
+			 const url = `${SUPABASE_URL}/rest/v1/quiz_respostas`;
 			
-			  const show = n => $id(n).style.display = 'block';
-			  const hide = n => $id(n).style.display = 'none';
+			 try {
+			   if (navigator.sendBeacon) {
+			     const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+			     navigator.sendBeacon(url, blob);
+			   } else {
+			     fetch(url, {
+			       method: 'POST',
+			       headers: {
+			         'apikey': SUPABASE_KEY,
+			         'Authorization': `Bearer ${SUPABASE_KEY}`,
+			         'Content-Type': 'application/json',
+			         'Prefer': 'return=minimal'
+			       },
+			       body: JSON.stringify(payload)
+			     });
+			   }
+			 } catch (err) {
+			   console.error('Erro ao enviar para Supabase:', err);
+			 }
+			}
 			
-			  const bar = qs('#progress-bar');
+			const maxSteps = 24;
+			let current = 1;
 			
-			  const updateBar = () =>
-			    bar.style.width = ((current - 1) / (maxSteps - 1)) * 100 + '%';
+			const qs = s => document.querySelector(s);
+			const $id = n => document.getElementById('quiz' + n);
 			
-			  const pauseAllVideos = () => {
-			    document.querySelectorAll('video').forEach(video => {
-			      if (!video.paused) video.pause();
-			    });
-			    document.querySelectorAll('iframe').forEach(iframe => {
-			      try {
-			        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-			      } catch (e) {}
-			    });
-			    document.querySelectorAll('vturb-smartplayer').forEach(player => {
-			      if (typeof player.pause === 'function') player.pause();
-			    });
-			  };
+			const show = n => $id(n).style.display = 'block';
+			const hide = n => $id(n).style.display = 'none';
 			
-			  const next = () => {
-			    if (current >= maxSteps) return;
-			    pauseAllVideos();
-			    hide(current);
-			    show(++current);
-			    updateBar();
-			  };
+			const bar = qs('#progress-bar');
+			const updateBar = () =>
+			 bar.style.width = ((current - 1) / (maxSteps - 1)) * 100 + '%';
 			
-			  const loadingStep = () => {
-			    pauseAllVideos();
-			    hide(current);
-			    current++;
-			    show(23);
-			    updateBar();
+			const pauseAllVideos = () => {
+			 document.querySelectorAll('video').forEach(v => !v.paused && v.pause());
+			 document.querySelectorAll('iframe').forEach(i => {
+			   try {
+			     i.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+			   } catch (e) {}
+			 });
+			 document.querySelectorAll('vturb-smartplayer').forEach(p => {
+			   if (typeof p.pause === 'function') p.pause();
+			 });
+			};
 			
-			    // ✅ TRACK automático da etapa 23
-			    trackQuizStep(23, 'Carregamento automático');
+			const next = () => {
+			 if (current >= maxSteps) return;
+			 pauseAllVideos();
+			 hide(current);
+			 show(++current);
+			 updateBar();
+			};
 			
-			    const barAnim = qs('#animated-progress-bar');
-			    const txt = qs('#progress-text');
-			    const dur = 5000;
-			    const t0 = performance.now();
+			const loadingStep = () => {
+			 pauseAllVideos();
+			 hide(current);
+			 current++;
+			 show(23);
+			 updateBar();
 			
-			    (function anim(now) {
-			      const p = Math.min(((now - t0) / dur) * 100, 100);
-			      barAnim.style.width = p + '%';
-			      txt.textContent = (p < 100) ? p.toFixed(0) + ' %' : 'Término';
+			 trackQuizStep(23, 'Carregamento automático');
 			
-			      if (p < 100) {
-			        requestAnimationFrame(anim);
-			      } else {
-			        setTimeout(() => {
-			          hide(23);
-			          show(++current);
-			          updateBar();
-			        }, 800);
-			      }
-			    })(performance.now());
-			  };
+			 const barAnim = qs('#animated-progress-bar');
+			 const txt = qs('#progress-text');
+			 const dur = 5000;
+			 const t0 = performance.now();
 			
-			  // ✅ TRACKING restaurado para etapas 1 a 22
-			  document.body.addEventListener('click', ev => {
-			    if (ev.target.closest('.quiz-option')) {
-			      const answer = ev.target.innerText.trim();
-			      trackQuizStep(current, answer); // 👈 registra resposta
-			      next();
-			      return;
-			    }
-			    if (ev.target.closest('.single-button')) {
-			      current === 22 ? loadingStep() : next();
-			    }
-			  });
+			 (function anim(now) {
+			   const p = Math.min(((now - t0) / dur) * 100, 100);
+			   barAnim.style.width = p + '%';
+			   txt.textContent = (p < 100) ? p.toFixed(0) + ' %' : 'Término';
 			
-			  // ✅ TRACK passo 24 (clique no botão final)
-			  const finalBtn = document.querySelector('#quiz24 .button');
-			  if (finalBtn) {
-			    finalBtn.addEventListener('click', () => {
-			      trackQuizStep(24, 'Clique no botão final');
-			    });
-			  }
+			   if (p < 100) {
+			     requestAnimationFrame(anim);
+			   } else {
+			     setTimeout(() => {
+			       hide(23);
+			       show(++current);
+			       updateBar();
+			     }, 800);
+			   }
+			 })(performance.now());
+			};
 			
-			  show(1);
-			  updateBar();
+			document.body.addEventListener('click', ev => {
+			 if (ev.target.closest('.quiz-option')) {
+			   const answer = ev.target.innerText.trim();
+			   trackQuizStep(current, answer);
+			   next();
+			   return;
+			 }
+			 if (ev.target.closest('.single-button')) {
+			   current === 22 ? loadingStep() : next();
+			 }
+			});
+			
+			const finalBtn = document.querySelector('#quiz24 .button');
+			if (finalBtn) {
+			 finalBtn.addEventListener('click', () => {
+			   trackQuizStep(24, 'Clique no botão final');
+			 });
+			}
+			
+			show(1);
+			updateBar();
 			});
 		</script>
 	</body>
