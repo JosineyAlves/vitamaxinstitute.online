@@ -398,10 +398,37 @@
 				</div>
 			</footer>
 		</div>
-		<!-- /.container -->
-		<!-- ================== SCRIPT ================== -->
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
+			  const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
+			  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
+			
+			  function getAnonymousUserId() {
+			    let uid = localStorage.getItem('quiz_uid');
+			    if (!uid) {
+			      uid = 'uid-' + Math.random().toString(36).substring(2, 12);
+			      localStorage.setItem('quiz_uid', uid);
+			    }
+			    return uid;
+			  }
+			
+			  function trackQuizStep(stepNumber, selectedOption) {
+			    fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
+			      method: 'POST',
+			      headers: {
+			        'apikey': SUPABASE_KEY,
+			        'Authorization': `Bearer ${SUPABASE_KEY}`,
+			        'Content-Type': 'application/json',
+			        'Prefer': 'return=minimal'
+			      },
+			      body: JSON.stringify({
+			        user_id: getAnonymousUserId(),
+			        step: stepNumber,
+			        answer: selectedOption,
+			        utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+			      })
+			    }).catch(err => console.error('Erro ao enviar para Supabase:', err));
+			  }
 			
 			  const maxSteps = 24;
 			  let current = 1;
@@ -414,64 +441,48 @@
 			
 			  const bar = qs('#progress-bar');
 			
-			  /* ------------ barra de progreso principal ------------ */
 			  const updateBar = () =>
 			    bar.style.width = ((current - 1) / (maxSteps - 1)) * 100 + '%';
 			
-			  /* ------------ pausar todos os vídeos ativos ------------ */
 			  const pauseAllVideos = () => {
-			    // Pausar vídeos HTML5
 			    document.querySelectorAll('video').forEach(video => {
-			      if (!video.paused) {
-			        video.pause();
-			      }
+			      if (!video.paused) video.pause();
 			    });
-			
-			    // Tentar pausar vídeos incorporados (Converteai/YouTube via iframe)
 			    document.querySelectorAll('iframe').forEach(iframe => {
 			      try {
-			        iframe.contentWindow.postMessage(
-			          '{"event":"command","func":"pauseVideo","args":""}',
-			          '*'
-			        );
-			      } catch (e) {
-			        // Ignora se não for possível enviar mensagem
-			      }
+			        iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+			      } catch (e) {}
 			    });
-			
-			    // Tentar pausar smartplayers se expuserem função
 			    document.querySelectorAll('vturb-smartplayer').forEach(player => {
-			      if (typeof player.pause === 'function') {
-			        player.pause();
-			      }
+			      if (typeof player.pause === 'function') player.pause();
 			    });
 			  };
 			
-			  /* ------------ avançar um passo normalmente ------------ */
 			  const next = () => {
 			    if (current >= maxSteps) return;
-			    pauseAllVideos(); // ✅ pausa vídeos antes de mudar
+			    pauseAllVideos();
 			    hide(current);
 			    show(++current);
 			    updateBar();
 			  };
 			
-			  /* ------------ passo especial (#23 → #24 → #25) ------------ */
 			  const loadingStep = () => {
-			    pauseAllVideos(); // ✅ também pausa aqui
+			    pauseAllVideos();
 			    hide(current);
 			    current++;
-			    show(23);          // mostra tela de carregamento
+			    show(23);
 			    updateBar();
+			
+			    // ✅ TRACK automático da etapa 23
+			    trackQuizStep(23, 'Carregamento automático');
 			
 			    const barAnim = qs('#animated-progress-bar');
 			    const txt = qs('#progress-text');
-			    const dur = 5000; // 5 s
+			    const dur = 5000;
 			    const t0 = performance.now();
 			
 			    (function anim(now) {
 			      const p = Math.min(((now - t0) / dur) * 100, 100);
-			
 			      barAnim.style.width = p + '%';
 			      txt.textContent = (p < 100) ? p.toFixed(0) + ' %' : 'Término';
 			
@@ -487,63 +498,27 @@
 			    })(performance.now());
 			  };
 			
-			/* ------------ delegação de cliques ------------ */
-			document.body.addEventListener('click', ev => {
-			const optionEl = ev.target.closest('.quiz-option');
-			const buttonEl = ev.target.closest('.single-button');
+			  document.body.addEventListener('click', ev => {
+			    if (ev.target.closest('.quiz-option')) {
+			      next();
+			      return;
+			    }
+			    if (ev.target.closest('.single-button')) {
+			      current === 22 ? loadingStep() : next();
+			    }
+			  });
 			
-			if (optionEl) {
-			 const selectedOption = optionEl.innerText.trim();
-			 const stepNumber = current;
-			 trackQuizStep(stepNumber, selectedOption); // ✅ envia dados ao Supabase
-			 next();
-			 return;
-			}
+			  // ✅ TRACK passo 24 (clique no botão final)
+			  const finalBtn = document.querySelector('#quiz24 .button');
+			  if (finalBtn) {
+			    finalBtn.addEventListener('click', () => {
+			      trackQuizStep(24, 'Clique no botão final');
+			    });
+			  }
 			
-			if (buttonEl) {
-			 // Registro de botão sem resposta textual (opcional, pode remover se quiser)
-			 trackQuizStep(current, 'Botão: PRÓXIMO PASO');
-			 current === 22 ? loadingStep() : next();
-			}
-			});
-			
-			
-			  /* ------------ estado inicial ------------ */
 			  show(1);
-			  updateBar(); // barra ao 0%
+			  updateBar();
 			});
-			
-		</script>
-		<script>
-			const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
-			const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
-			
-			function getAnonymousUserId() {
-			let uid = localStorage.getItem('quiz_uid');
-			if (!uid) {
-			  uid = 'uid-' + Math.random().toString(36).substring(2, 12);
-			  localStorage.setItem('quiz_uid', uid);
-			}
-			return uid;
-			}
-			
-			function trackQuizStep(stepNumber, selectedOption) {
-			fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
-			  method: 'POST',
-			  headers: {
-			    'apikey': SUPABASE_KEY,
-			    'Authorization': `Bearer ${SUPABASE_KEY}`,
-			    'Content-Type': 'application/json',
-			    'Prefer': 'return=minimal'
-			  },
-			  body: JSON.stringify({
-			    user_id: getAnonymousUserId(),
-			    step: stepNumber,
-			    answer: selectedOption,
-			    utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
-			  })
-			}).catch(err => console.error('Erro ao enviar para Supabase:', err));
-			}
 		</script>
 	</body>
 </html>
