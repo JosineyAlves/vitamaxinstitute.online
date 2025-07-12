@@ -19,39 +19,6 @@
 			    }
 			}
 		</script>
-		<!-- Meta Pixel Code -->
-		<script>
-			!function(f,b,e,v,n,t,s)
-			{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-			n.queue=[];t=b.createElement(e);t.async=!0;
-			t.src=v;s=b.getElementsByTagName(e)[0];
-			s.parentNode.insertBefore(t,s)}(window, document,'script',
-			'https://connect.facebook.net/en_US/fbevents.js');
-			fbq('init', '125413300567612');
-			fbq('track', 'PageView');
-		</script>
-		<noscript><img height="1" width="1" style="display:none"
-			src="https://www.facebook.com/tr?id=125413300567612&ev=PageView&noscript=1"
-			/></noscript>
-		<!-- End Meta Pixel Code -->
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-WV5NJ4GPD4"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			
-			gtag('config', 'G-WV5NJ4GPD4');
-		</script>
-		<script type="text/javascript">
-			(function(c,l,a,r,i,t,y){
-			  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-			  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-			  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-			})(window, document, "clarity", "script", "sdaye79vlq");
-		</script>
 	</head>
 	<body>
 		<div class="container">
@@ -487,52 +454,63 @@
 			    })(performance.now());
 			  };
 			
-			  /* ------------ delegação de cliques ------------ */
-			  document.body.addEventListener('click', ev => {
-			    if (ev.target.closest('.quiz-option')) {
-			      next();
-			      return;
-			    }
-			    if (ev.target.closest('.single-button')) {
-			      current === 22 ? loadingStep() : next();
-			    }
-			  });
+			/* ------------ delegação de cliques ------------ */
+			document.body.addEventListener('click', ev => {
+			const optionEl = ev.target.closest('.quiz-option');
+			const buttonEl = ev.target.closest('.single-button');
+			
+			if (optionEl) {
+			 const selectedOption = optionEl.innerText.trim();
+			 const stepNumber = current;
+			 trackQuizStep(stepNumber, selectedOption); // ✅ envia dados ao Supabase
+			 next();
+			 return;
+			}
+			
+			if (buttonEl) {
+			 // Registro de botão sem resposta textual (opcional, pode remover se quiser)
+			 trackQuizStep(current, 'Botão: PRÓXIMO PASO');
+			 current === 22 ? loadingStep() : next();
+			}
+			});
+			
 			
 			  /* ------------ estado inicial ------------ */
 			  show(1);
 			  updateBar(); // barra ao 0%
 			});
+			
 		</script>
 		<script>
-	const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
-	const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
-	
-	function getAnonymousUserId() {
-	let uid = localStorage.getItem('quiz_uid');
-	if (!uid) {
-	  uid = 'uid-' + Math.random().toString(36).substring(2, 12);
-	  localStorage.setItem('quiz_uid', uid);
-	}
-	return uid;
-	}
-	
-	function trackQuizStep(stepNumber, selectedOption) {
-	fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
-	  method: 'POST',
-	  headers: {
-	    'apikey': SUPABASE_KEY,
-	    'Authorization': `Bearer ${SUPABASE_KEY}`,
-	    'Content-Type': 'application/json',
-	    'Prefer': 'return=minimal'
-	  },
-	  body: JSON.stringify({
-	    user_id: getAnonymousUserId(),
-	    step: stepNumber,
-	    answer: selectedOption,
-	    utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
-	  })
-	}).catch(err => console.error('Erro ao enviar para Supabase:', err));
-	}
-</script>
+			const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
+			const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
+			
+			function getAnonymousUserId() {
+			let uid = localStorage.getItem('quiz_uid');
+			if (!uid) {
+			  uid = 'uid-' + Math.random().toString(36).substring(2, 12);
+			  localStorage.setItem('quiz_uid', uid);
+			}
+			return uid;
+			}
+			
+			function trackQuizStep(stepNumber, selectedOption) {
+			fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
+			  method: 'POST',
+			  headers: {
+			    'apikey': SUPABASE_KEY,
+			    'Authorization': `Bearer ${SUPABASE_KEY}`,
+			    'Content-Type': 'application/json',
+			    'Prefer': 'return=minimal'
+			  },
+			  body: JSON.stringify({
+			    user_id: getAnonymousUserId(),
+			    step: stepNumber,
+			    answer: selectedOption,
+			    utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+			  })
+			}).catch(err => console.error('Erro ao enviar para Supabase:', err));
+			}
+		</script>
 	</body>
 </html>
