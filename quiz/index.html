@@ -398,38 +398,10 @@
 				</div>
 			</footer>
 		</div>
+<!-- ================== SCRIPT ================== -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ocultado por segurança
-
-    function getAnonymousUserId() {
-      let uid = localStorage.getItem('quiz_uid');
-      if (!uid) {
-        uid = 'uid-' + Math.random().toString(36).substring(2, 12);
-        localStorage.setItem('quiz_uid', uid);
-      }
-      return uid;
-    }
-
-    function trackQuizStep(stepNumber, selectedOption) {
-      fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
-        method: 'POST',
-        headers: {
-          'apikey': SUPABASE_KEY,
-          'Authorization': `Bearer ${SUPABASE_KEY}`,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({
-          user_id: getAnonymousUserId(),
-          step: stepNumber,
-          answer: selectedOption,
-          utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
-        })
-      }).catch(err => console.error('Erro ao enviar para Supabase:', err));
-    }
-
     const maxSteps = 24;
     let current = 1;
 
@@ -440,21 +412,29 @@
     const hide = n => $id(n).style.display = 'none';
 
     const bar = qs('#progress-bar');
+
+    /* ------------ barra de progresso principal ------------ */
     const updateBar = () =>
       bar.style.width = ((current - 1) / (maxSteps - 1)) * 100 + '%';
 
+    /* ------------ pausar todos os vídeos ativos ------------ */
     const pauseAllVideos = () => {
-      document.querySelectorAll('video').forEach(v => { if (!v.paused) v.pause(); });
+      document.querySelectorAll('video').forEach(video => {
+        if (!video.paused) video.pause();
+      });
       document.querySelectorAll('iframe').forEach(iframe => {
         try {
-          iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+          iframe.contentWindow.postMessage(
+            '{"event":"command","func":"pauseVideo","args":""}', '*'
+          );
         } catch (e) {}
       });
-      document.querySelectorAll('vturb-smartplayer').forEach(p => {
-        if (typeof p.pause === 'function') p.pause();
+      document.querySelectorAll('vturb-smartplayer').forEach(player => {
+        if (typeof player.pause === 'function') player.pause();
       });
     };
 
+    /* ------------ avançar um passo normalmente ------------ */
     const next = () => {
       if (current >= maxSteps) return;
       pauseAllVideos();
@@ -463,6 +443,7 @@
       updateBar();
     };
 
+    /* ------------ passo especial (#23 → #24) ------------ */
     const loadingStep = () => {
       pauseAllVideos();
       hide(current);
@@ -495,29 +476,27 @@
       })(performance.now());
     };
 
-    // ✅ TRACKING completo de interações
+    /* ------------ delegação de cliques ------------ */
     document.body.addEventListener('click', ev => {
       const optionEl = ev.target.closest('.quiz-option');
       const buttonEl = ev.target.closest('.single-button');
 
       if (optionEl) {
-        const text = optionEl.getAttribute('data-value') || optionEl.innerText.trim();
-        trackQuizStep(current, text);
+        const selectedOption = optionEl.innerText.trim();
+        const stepNumber = current;
+        trackQuizStep(stepNumber, selectedOption); // ✅ envia dados ao Supabase
         next();
         return;
       }
 
       if (buttonEl) {
-        if (current === 22) {
-          loadingStep();
-        } else {
-          trackQuizStep(current, 'Botão: PRÓXIMO PASO');
-          next();
-        }
+        // ✅ Etapa 22 ativa animação com track automático de etapa 23
+        trackQuizStep(current, 'Botão: PRÓXIMO PASO');
+        current === 22 ? loadingStep() : next();
       }
     });
 
-    // ✅ TRACK da etapa 24 via botão de redirecionamento
+    /* ------------ clique no botão final (etapa 24) ------------ */
     const finalBtn = document.querySelector('#quiz24 .button');
     if (finalBtn) {
       finalBtn.addEventListener('click', () => {
@@ -525,11 +504,43 @@
       });
     }
 
-    // Inicialização
+    /* ------------ estado inicial ------------ */
     show(1);
     updateBar();
   });
 </script>
 
+<!-- ============== SUPABASE TRACKING CORE ============== -->
+<script>
+  const SUPABASE_URL = 'https://sjaiedyjxlxazcemsmmt.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNqYWllZHlqeGx4YXpjZW1zbW10Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNTUxMDIsImV4cCI6MjA2NzgzMTEwMn0.8j4wfJUKqNPHjWEXU5VHm-NcImDiDG4a-wmoVb1e5Gw';
+
+  function getAnonymousUserId() {
+    let uid = localStorage.getItem('quiz_uid');
+    if (!uid) {
+      uid = 'uid-' + Math.random().toString(36).substring(2, 12);
+      localStorage.setItem('quiz_uid', uid);
+    }
+    return uid;
+  }
+
+  function trackQuizStep(stepNumber, selectedOption) {
+    fetch(`${SUPABASE_URL}/rest/v1/quiz_respostas`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        user_id: getAnonymousUserId(),
+        step: stepNumber,
+        answer: selectedOption,
+        utm_source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+      })
+    }).catch(err => console.error('Erro ao enviar para Supabase:', err));
+  }
+</script>
 	</body>
 </html>
