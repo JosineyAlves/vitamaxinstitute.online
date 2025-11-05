@@ -161,17 +161,17 @@ body,html{overflow-x:hidden}
 }
 
 .hidden-btn-container .btn-2 {
-    background-color: #ffff !important;
-    border: none !important;
-    color: #ffff !important;
-    font-size: 0.9rem !important;
-    padding: 0.05rem 0.5rem !important;
-    font-weight: 100 !important;
+    background-color: #fffb00 !important;
+    border-radius: 15px;
+    color: #181818 !important;
+    font-size: 1rem !important;
+    padding: 1.5rem 2.5rem !important;
+    font-weight: 700 !important;
     text-transform: none !important;
     animation: none !important;
     box-shadow: none !important;
     text-shadow: none !important;
     margin: 0 !important;
-	text-decoration: none !important;
+	 text-decoration: none !important;
 }
 
