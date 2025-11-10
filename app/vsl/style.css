@@ -72,6 +72,197 @@ a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-d
     border-bottom: 0.0625em solid #e9ebee;
 }
 
+.post-comments{
+    padding-right: 0.5rem;
+}
+
+.group-likes-share {
+  margin-bottom: 8px;
+  gap: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 25px;
+}
+
+#fb-comments {
+	font-size: 13px;
+	width: 100%;
+	margin: auto;
+}
+
+#fb-comments .fb-heading {
+	margin: 2.125em 0 0.625em;
+	font-size: 1.1em;
+	color: #555;
+	font-weight: 400;
+	text-align: left;
+}
+
+#fb-comments .comments-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25em;
+	border: 0.0625em solid #e9ebee;
+	border-radius: 1.25em;
+	padding: 1.25em 1.25em 0;
+}
+
+#fb-comments .comment {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	gap: 0.625em;
+}
+
+#fb-comments .comment.answer {
+	margin-left: 3.625em;
+	max-width: calc(100% - 3.625em);
+	margin-bottom: 0.75em;
+}
+
+#fb-comments .comment.answer+.answer {
+	margin-top: -0.75em;
+}
+
+#fb-comments .comment .user-avatar {
+	max-width: 3em;
+	max-height: 3em;
+	border-radius: 1.5625em;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+#fb-comments .comment .comment-data {
+	width: 100%;
+}
+
+#fb-comments .comment .comment-data .user {
+	font-weight: 400;
+	color: #050505;
+	border-radius: 0.75em;
+	background-color: #f0f2f5;
+	padding: 0.375em 0.75em 0.75em;
+}
+
+#fb-comments .comment .comment-data .user .name {
+	margin: 0;
+	color: #365899;
+	text-decoration: none;
+	font-weight: 700;
+	font-size: 16px;
+	cursor: pointer;
+	max-width: -webkit-max-content;
+	max-width: -moz-max-content;
+	max-width: max-content;
+}
+
+#fb-comments .comment .comment-data .user .text {
+	margin: 0;
+	font-weight: 400;
+	font-size: 16px;
+	color: #050505;
+	width: fit-content;
+    text-align: left;
+}
+
+#fb-comments .comment .comment-data .buttons {
+	margin: 0.125em 0 0 0.75em;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 0.3125em;
+}
+
+#fb-comments .comment .comment-data .buttons time,
+#fb-comments .comment .comment-data .buttons .like,
+#fb-comments .comment .comment-data .buttons .answer,
+#fb-comments .comment .comment-data .buttons span {
+	font-size: 0.80em;
+	color: #888;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#fb-comments .comment .comment-data .buttons .like,
+#fb-comments .comment .comment-data .buttons .answer {
+	font-weight: 600;
+	cursor: pointer;
+}
+
+#fb-comments .comment .comment-data .buttons .like[liked] {
+	color: #365899;
+}
+
+#fb-comments .comment .comment-data .buttons .answer {
+	cursor: default;
+	position: relative;
+}
+
+#fb-comments .comment .comment-data .buttons .answer:hover::after {
+	content: "You cannot comment on this post";
+	position: absolute;
+	left: 50%;
+	top: -0.625em;
+	width: 11.25em;
+	background-color: #f0f2f5;
+	color: #4c4c4c;
+	transform: translate(-50%, -100%);
+	z-index: 10;
+	border-radius: 0.25em;
+	padding: 0.375em;
+	text-align: center;
+	font-weight: 400;
+	box-shadow: 0.125em 0.125em 0.5em 0.125em rgb(255, 4, 4);
+}
+
+#fb-comments .comment .comment-data .buttons .answer:hover::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: -0.625em;
+	width: 0;
+	height: 0;
+	border-left: 0.5em solid rgba(0, 0, 0, 0);
+	border-right: 0.5em solid rgba(0, 0, 0, 0);
+	border-top: 0.5em solid #f0f2f5;
+	z-index: 11;
+	transform: translateX(-50%);
+	filter: drop-shadow(0 0.1875em 0.125em rgba(0, 0, 0, 0.1));
+}
+
+#fb-comments .comment .likes {
+	position: absolute;
+	bottom: -0.625em;
+	right: 0;
+	background-color: #fff;
+	border: 0.125em solid #eaebef;
+	display: flex;
+	align-items: center;
+	font-size: 0.875em;
+	line-height: 1;
+	color: #888;
+	border-radius: 6.25em;
+	padding: 0.0625em 0.25em 0.0625em 0;
+}
+
+#fb-comments .comment .likes::before {
+	content: url('img/likes.png');
+	cursor: pointer;
+}
+
+#fb-comments .comments-closed {
+	font-size: 0.875em;
+	font-weight: 600;
+	text-align: center;
+	margin: 0.9375em 0 5px;
+	color: #555;
+}
 
 
 @media (min-width: 600px) {
@@ -80,6 +271,15 @@ a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-d
     }
 }
 
+@media (min-width: 576px) {
+	#fb-comments {
+		font-size: 16px;
+	}
+
+	#fb-comments .comment likes {
+		bottom: 0;
+	}
+}
 
 @media (max-width: 410px) {
     #video-section .h1,#video-section h1 {
@@ -95,10 +295,19 @@ body,html{overflow-x:hidden}
 #video-section .h1,#video-section h1{font-size:calc(1.2rem + 1.5vw)}
 
 /* Background Colors */
-.bg-secondary-new{background:#e48c74}
-.bg-gradient-new{background:linear-gradient(135deg,#f6d365,#fda085,#fff5e1)}
+.bg-secondary-new{background:#1c1c1c}
+.bg-gradient-new{background:linear-gradient(135deg,#b71c1c,#9e1c24,#3c0a0a)}
 
 
+/* Buttons */
+.btn-new{border-radius:10px;cursor:pointer;font-family:Montserrat,sans-serif;font-size:1.3rem;font-weight:700;line-height:1.5;padding:1.25rem 5rem;text-align:center;text-decoration:none;text-transform:uppercase;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;-webkit-user-select:none;-moz-user-select:none;user-select:none;vertical-align:middle}
+.btn-primary-new{background-color:#ffeb00;border:2px solid #ffd814;color:#000}
+.btn-primary-new:hover{background-color:#ffd814;text-decoration:none}
+
+/* Animations */
+.animation-new{animation-duration:1s;animation-fill-mode:both;animation-iteration-count:infinite}
+.pulsing{animation-name:pulsing}
+@keyframes pulsing{0%{transform:scale(1)}70%{transform:scale(1.1)}to{transform:scale(1)}}
 
 /* Utility Classes */
 .opacity-75{opacity:.75!important}
@@ -147,31 +356,12 @@ body,html{overflow-x:hidden}
 #video-section{min-height:320px}
 .video-wrapper{max-width:450px}
 
+/* Mobile Responsive */
+@media (max-width:500px){
+  .btn-new{padding:1rem 2.5rem}
+}
 
 
 @media (max-width:467px){
   #video-section .h1,#video-section h1{font-size:calc(.97rem + 1.5vw);line-height:1.4}
 }
-
-/* Mobile Footer Spacing */
-@media (max-width:768px){
-  .bg-secondary-new.py-md-5{
-    padding-top:3rem!important;
-  }
-}
-
-.hidden-btn-container .btn-2 {
-    background-color: #fffb00 !important;
-    border-radius: 15px;
-    color: #181818 !important;
-    font-size: 1rem !important;
-    padding: 1.5rem 2.5rem !important;
-    font-weight: 700 !important;
-    text-transform: none !important;
-    animation: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    margin: 0 !important;
-	 text-decoration: none !important;
-}
-
