@@ -20,7 +20,18 @@ $(document).ready(function () {
     // Redireciona para URL quando qualquer opção da etapa 3 for clicada (No ou Yes)
     $("#step3 input[type='radio']").click(function () {
         setTimeout(function () {
-            window.location.href = "http://vitamaxinstitute.online/app/vsl";
+            // Captura os parâmetros UTM da URL atual
+            var currentParams = window.location.search;
+            var targetUrl = "http://vitamaxinstitute.online/app/vsl";
+            
+            // Adiciona os parâmetros UTM à URL de destino se existirem
+            if (currentParams) {
+                // Remove o '?' do início dos parâmetros e adiciona corretamente
+                var params = currentParams.replace('?', '');
+                targetUrl += (targetUrl.indexOf('?') > -1 ? '&' : '?') + params;
+            }
+            
+            window.location.href = targetUrl;
         }, 500);
     });
 });
