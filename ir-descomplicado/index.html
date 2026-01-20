@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imposto de Renda Descomplicado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+  <body>
+  <div class="min-h-screen bg-white">
+    
+    <!-- 1. HERO SECTION -->
+    <section class="relative pt-16 pb-16 md:pt-24 md:pb-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="lg:w-1/2 text-center lg:text-left">
+            <span class="inline-block px-4 py-1 rounded-full bg-[#F5F5F5] text-sm font-bold text-[#FF7047] mb-6 tracking-wide uppercase">
+              ⚡️ 100% Atualizado para 2026
+            </span>
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-[#222222] leading-tight mb-6">
+              Faça sua declaração de IR ou MEI em minutos — <span class="text-[#FF7047]">sem contador, sem erro e sem enrolação</span>
+            </h1>
+            <p class="text-lg md:text-xl text-[#444444] mb-4 max-w-2xl mx-auto lg:mx-0">
+              Mesmo que você nunca tenha declarado nada antes. Passo a passo ilustrado, direto no seu celular.
+            </p>
+            
+            <div class="mb-8 lg:flex lg:flex-col lg:items-start lg:gap-4">
+              <div class="hidden lg:block w-full">
+                <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 text-left">Preço especial expira em:</p>
+                <div class="flex gap-2 justify-start">
+                  <div id="countdown-timer-desktop"></div>
+                </div>
+              </div>
+              <div class="lg:hidden">
+                <div id="countdown-timer-mobile"></div>
+              </div>
+            </div>
+
+            <div class="space-y-4 lg:text-left">
+              <a href="#oferta" class="bg-[#FF7047] text-white font-bold py-4 px-8 rounded-lg transition-all transform hover:scale-105 hover:bg-[#E65A36] shadow-lg text-center block w-full sm:w-max mx-auto lg:mx-0 cursor-pointer">
+                Quero declarar com segurança
+              </a>
+              <p class="text-sm font-semibold text-gray-500 text-center lg:text-left">
+                R$19,90 • Pagamento único • Acesso imediato
+              </p>
+            </div>
+          </div>
+          <div class="lg:w-1/2 relative group flex items-center justify-center">
+            <img 
+              src="banner.png" 
+              alt="Mockup do eBook" 
+              class="relative rounded-2xl mx-auto w-full max-w-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. O QUE VOCÊ VAI RECEBER -->
+    <section class="py-20 bg-[#F5F5F5]">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#222222] mb-8 text-center leading-tight">
+          Tudo o que você precisa em um só lugar
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">📘</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Passo a passo completo</h4>
+              <p class="text-sm text-[#444444]">Tutorial visual para IRPF + MEI</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">🧾</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Checklist pronto</h4>
+              <p class="text-sm text-[#444444]">Lista de documentos para imprimir</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">📄</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Exemplo real</h4>
+              <p class="text-sm text-[#444444]">Declaração preenchida para referência</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">📚</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Glossário completo</h4>
+              <p class="text-sm text-[#444444]">Termos técnicos explicados de forma simples</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">🔗</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Links oficiais</h4>
+              <p class="text-sm text-[#444444]">Caminho direto para os canais da Receita</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-6 bg-white rounded-xl shadow-sm border border-gray-100">
+            <span class="text-3xl shrink-0">🗓️</span>
+            <div>
+              <h4 class="font-bold text-[#222222] mb-1">Calendário 2026</h4>
+              <p class="text-sm text-[#444444]">Prazos atualizados para não levar multas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. BENEFÍCIOS -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#222222] mb-8 text-center leading-tight">
+          Por que este guia vale muito mais do que R$19,90?
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="text-4xl mb-4">⏱️</div>
+            <h3 class="text-xl font-bold text-[#222222] mb-3">Economia de tempo</h3>
+            <p class="text-[#444444] leading-relaxed">Nada de vídeos confusos ou tutoriais intermináveis de 40 minutos.</p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="text-4xl mb-4">💸</div>
+            <h3 class="text-xl font-bold text-[#222222] mb-3">Economia de dinheiro</h3>
+            <p class="text-[#444444] leading-relaxed">Evite pagar até R$300 por algo que você mesmo pode fazer.</p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="text-4xl mb-4">🔒</div>
+            <h3 class="text-xl font-bold text-[#222222] mb-3">Segurança total</h3>
+            <p class="text-[#444444] leading-relaxed">Passo a passo claro, com instruções de como corrigir erros.</p>
+          </div>
+          <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+            <div class="text-4xl mb-4">📱</div>
+            <h3 class="text-xl font-bold text-[#222222] mb-3">100% Flexível</h3>
+            <p class="text-[#444444] leading-relaxed">Acesse e use no seu celular, tablet ou computador quando quiser.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DEPOIMENTOS -->
+    <section class="py-20 bg-[#F5F5F5]">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#222222] mb-8 text-center leading-tight">
+          Veja o que dizem nossos alunos
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Fiz minha primeira declaração com esse guia. Muito melhor que vídeo no YouTube."</p>
+            <cite class="not-italic font-bold text-[#222222] block">— Marcos R., Autônomo</cite>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Economizei mais de R$250 de contador. Super simples e direto ao ponto!"</p>
+            <cite class="not-italic font-bold text-[#222222] block">— Camila S., MEI de estética</cite>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Tudo explicado passo a passo. Recomendo 100% para quem tem medo de errar."</p>
+            <cite class="not-italic font-bold text-[#222222] block">— José A., Eletricista</cite>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Finalmente entendi como declarar meu MEI sem complicação. O guia é perfeito para iniciantes!"</p>
+            <cite class="not-italic font-bold text-[#222222] block">— Ana Paula F., MEI de moda</cite>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Consegui fazer tudo pelo celular mesmo. Prático, rápido e sem dor de cabeça!"</p>
+            <cite class="not-italic font-bold text-[#222222] block">— Roberto M., Consultor</cite>
+          </div>
+          <div class="bg-white p-8 rounded-2xl shadow-sm italic relative">
+            <span class="text-6xl text-[#FF7047] opacity-20 absolute top-4 left-4">"</span>
+            <p class="relative z-10 text-[#444444] mb-4">"Valeu cada centavo! Fiz minha declaração em menos de 30 minutos seguindo o passo a passo."</p>
+            <cite class="not-italic font-bold text-[#222222] block">— Juliana T., Design Gráfico</cite>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. GARANTIA -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <img 
+          src="7-dias-garantia.webp" 
+          alt="Selo de Garantia" 
+          class="w-48 h-48 md:w-64 md:h-64 mx-auto mb-6 object-contain"
+        />
+        <h2 class="text-2xl md:text-3xl font-extrabold text-[#222222] mb-6">Você tem 7 dias para testar — ou recebe seu dinheiro de volta</h2>
+        <p class="text-lg text-[#444444] leading-relaxed mb-8 max-w-2xl mx-auto">
+          Adquiriu o guia e percebeu que não é pra você? Sem problema. Basta um clique e devolvemos 100% do seu pagamento. Sem perguntas. Sem letras miúdas. Sem burocracia.
+        </p>
+        <p class="text-sm text-[#666666] italic mb-10">
+          Essa é a nossa forma de garantir que você só pague se sentir que o conteúdo realmente te ajudou.
+        </p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left max-w-2xl mx-auto">
+          <div class="flex items-center gap-3 bg-[#F5F5F5] p-4 rounded-xl shadow-sm border border-gray-100">
+            <span class="text-[#FF7047] text-xl">✔️</span>
+            <span class="font-bold text-sm text-[#222222]">Garantia de 7 dias</span>
+          </div>
+          <div class="flex items-center gap-3 bg-[#F5F5F5] p-4 rounded-xl shadow-sm border border-gray-100">
+            <span class="text-[#FF7047] text-xl">🔁</span>
+            <span class="font-bold text-sm text-[#222222]">Reembolso total</span>
+          </div>
+          <div class="flex items-center gap-3 bg-[#F5F5F5] p-4 rounded-xl shadow-sm border border-gray-100">
+            <span class="text-[#FF7047] text-xl">🧘‍♂️</span>
+            <span class="font-bold text-sm text-[#222222]">Zero risco</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. OFERTA FINAL -->
+    <section id="oferta" class="py-20 bg-[#222222] text-white overflow-hidden relative">
+      <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+        <span class="text-[200px] leading-none font-black text-white">19</span>
+      </div>
+      <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <p class="text-[#FF7047] font-bold uppercase tracking-widest mb-4">Aproveite enquanto há tempo</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          Resolva sua declaração agora por apenas
+        </h2>
+        <div class="flex items-center justify-center gap-4 mb-4">
+          <span class="text-3xl md:text-4xl text-gray-400 line-through">R$79,90</span>
+          <span class="text-5xl md:text-6xl font-extrabold text-[#FF7047]">R$19,90</span>
+        </div>
+        <p class="text-xl text-gray-400 mb-8">
+          Acesso imediato por e-mail. Guia em PDF pronto para aplicar.
+        </p>
+
+        <div class="mb-10">
+          <div id="countdown-timer-oferta"></div>
+        </div>
+
+        <div class="mb-12">
+          <a href="https://pay.hotmart.com/V99750687C?off=6v3kz49e&checkoutMode=10" target="_blank" rel="noopener noreferrer" class="bg-[#FF7047] text-white font-bold md:px-12 text-xl py-5 rounded-xl transition-all transform hover:scale-105 hover:bg-[#E65A36] shadow-lg text-center block w-full sm:w-max mx-auto cursor-pointer">
+            Quero garantir meu guia agora
+          </a>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium">
+          <span class="flex items-center gap-2"><span class="text-[#FF7047]">✅</span> Pagamento único</span>
+          <span class="flex items-center gap-2"><span class="text-[#FF7047]">✅</span> 100% seguro</span>
+          <span class="flex items-center gap-2"><span class="text-[#FF7047]">✅</span> Sem mensalidades</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-[#222222] mb-8 text-center leading-tight">
+          Dúvidas Frequentes
+        </h2>
+        <div class="max-w-3xl mx-auto space-y-4" id="faq-container">
+          <!-- FAQ items serão inseridos aqui via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. RODAPÉ -->
+    <footer class="py-12 bg-[#F5F5F5] border-t border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <div class="mb-6 flex flex-wrap justify-center gap-6 text-sm font-semibold text-[#444444]">
+          <a href="#" class="hover:text-[#FF7047]">Política de Privacidade</a>
+          <a href="#" class="hover:text-[#FF7047]">Termos de Uso</a>
+        </div>
+        <p class="text-xs text-gray-500 mb-6 max-w-2xl mx-auto uppercase tracking-wider">
+          Este material é educativo e não substitui orientação contábil em casos específicos.
+        </p>
+        <p class="text-base font-bold text-[#222222]">
+          Imposto de Renda Descomplicado © 2026
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Dados das FAQs
+    const faqs = [
+    { 
+      question: "Nunca declarei antes. Consigo fazer sozinho?", 
+      answer: "Com certeza! O guia foi desenhado para iniciantes, usando uma linguagem simples e prints de tela reais. Você só precisa seguir o passo a passo para preencher e enviar sua declaração com segurança." 
+    },
+    { 
+      question: "O guia cobre IRPF e MEI?", 
+      answer: "Sim. Você recebe o roteiro completo para a Declaração de Ajuste Anual (Pessoa Física) e também para a Declaração Anual do MEI (DASN-SIMEI), resolvendo tudo de uma vez." 
+    },
+    { 
+      question: "E se eu preencher algo errado?", 
+      answer: "O guia ensina como revisar seus dados antes do envio e também mostra como fazer uma declaração retificadora (correção) de forma simples, caso você esqueça algum detalhe." 
+    },
+    { 
+      question: "Terei que pagar algo a mais depois?", 
+      answer: "Não. O pagamento de R$19,90 é único e garante acesso vitalício ao material de 2026. Não existem mensalidades, taxas ocultas ou cobranças futuras." 
+    },
+    { 
+      question: "Como recebo o acesso? Funciona no celular?", 
+      answer: "O envio é imediato via e-mail após a confirmação do pagamento. O material está em formato PDF de alta qualidade, otimizado para leitura em celulares, tablets ou computadores." 
+    }
+  ];
+
+    // Função para criar o Countdown Timer
+    function createCountdownTimer(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      // Sempre começa com 1 hora quando a página é carregada
+      const storageKey = `timer_end_${containerId}`;
+      let endTime = sessionStorage.getItem(storageKey);
+      
+      // Se não existe um timer salvo, cria um novo de 1 hora
+      if (!endTime) {
+        endTime = Date.now() + (60 * 60 * 1000); // 1 hora em milissegundos
+        sessionStorage.setItem(storageKey, endTime);
+      } else {
+        endTime = parseInt(endTime);
+      }
+
+      function updateTimer() {
+        const now = Date.now();
+        const diff = endTime - now;
+        
+        // Se o timer expirou, reseta para 1 hora
+        if (diff <= 0) {
+          endTime = Date.now() + (60 * 60 * 1000);
+          sessionStorage.setItem(storageKey, endTime);
+        }
+        
+        const totalSeconds = Math.floor((endTime - Date.now()) / 1000);
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+
+        const hours = h.toString().padStart(2, '0');
+        const minutes = m.toString().padStart(2, '0');
+        const seconds = s.toString().padStart(2, '0');
+
+        const isDesktop = containerId === 'countdown-timer-desktop';
+        const justifyClass = isDesktop ? 'justify-start lg:justify-start' : 'justify-center';
+        
+        container.innerHTML = `
+          <div class="flex ${justifyClass} items-center gap-3 my-4">
+            <div class="flex flex-col items-center">
+              <div class="bg-[#FF7047] text-white text-xl md:text-2xl font-bold w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-lg shadow-md">
+                ${hours}
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gray-500 mt-1">Horas</span>
+            </div>
+            <span class="text-2xl font-bold text-[#FF7047] mb-5">:</span>
+            <div class="flex flex-col items-center">
+              <div class="bg-[#FF7047] text-white text-xl md:text-2xl font-bold w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-lg shadow-md">
+                ${minutes}
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gray-500 mt-1">Minutos</span>
+            </div>
+            <span class="text-2xl font-bold text-[#FF7047] mb-5">:</span>
+            <div class="flex flex-col items-center">
+              <div class="bg-[#FF7047] text-white text-xl md:text-2xl font-bold w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-lg shadow-md">
+                ${seconds}
+            </div>
+              <span class="text-[10px] uppercase font-bold text-gray-500 mt-1">Segundos</span>
+            </div>
+          </div>
+        `;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+
+    // Função para criar o FAQ
+    function createFAQ() {
+      const container = document.getElementById('faq-container');
+      if (!container) return;
+
+      let openIndex = null;
+
+      function toggleFAQ(index) {
+        openIndex = openIndex === index ? null : index;
+        renderFAQ();
+      }
+
+      function renderFAQ() {
+        container.innerHTML = faqs.map((item, index) => {
+          const isOpen = openIndex === index;
+          return `
+            <div class="border border-gray-200 rounded-lg overflow-hidden bg-white">
+              <button
+                data-faq-index="${index}"
+                class="faq-button w-full text-left p-5 flex justify-between items-center hover:bg-gray-50 transition-colors"
+              >
+                <span class="font-bold text-[#222222]">${item.question}</span>
+                <span class="transform transition-transform ${isOpen ? 'rotate-180' : ''}">
+                  ▼
+                </span>
+              </button>
+              ${isOpen ? `
+                <div class="p-5 border-t border-gray-100 text-[#444444] bg-[#F9FAFB]">
+                  ${item.answer}
+              </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+
+        // Adicionar event listeners aos botões
+        container.querySelectorAll('.faq-button').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-faq-index'));
+            toggleFAQ(index);
+          });
+        });
+      }
+
+      renderFAQ();
+    }
+
+    // Inicializar quando o DOM estiver pronto
+    document.addEventListener('DOMContentLoaded', function() {
+      createCountdownTimer('countdown-timer-desktop');
+      createCountdownTimer('countdown-timer-mobile');
+      createCountdownTimer('countdown-timer-oferta');
+      createFAQ();
+    });
+  </script>
+</body>
+</html>
