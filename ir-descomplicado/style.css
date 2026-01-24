@@ -24,3 +24,24 @@ body {
   color: white;
 }
 
+@media (max-width: 640px) {
+  .text-3xl {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+
+  .text-4xl {
+    font-size: 1.75rem !important;
+    line-height: 2.1rem !important;
+  }
+
+  .py-20 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .gap-8 {
+    gap: 1.5rem;
+  }
+}
+
