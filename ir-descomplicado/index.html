@@ -289,9 +289,6 @@
 
     <!-- 6. OFERTA FINAL -->
     <section id="oferta" class="py-20 bg-[#222222] text-white overflow-hidden relative">
-      <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-        <span class="text-[200px] leading-none font-black text-white">19</span>
-      </div>
       <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
         <p class="text-[#FF7047] font-bold uppercase tracking-widest mb-4">Aproveite enquanto há tempo</p>
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
@@ -513,6 +510,22 @@
       createCountdownTimer('countdown-timer-mobile');
       createCountdownTimer('countdown-timer-oferta');
       createFAQ();
+
+      // Scroll suave para a seção de oferta ao clicar em links com href="#oferta"
+      const ofertaLinks = document.querySelectorAll('a[href="#oferta"]');
+      const ofertaSection = document.getElementById('oferta');
+
+      if (ofertaSection && ofertaLinks.length > 0) {
+        ofertaLinks.forEach(link => {
+          link.addEventListener('click', function (event) {
+            event.preventDefault();
+            ofertaSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          });
+        });
+      }
     });
   </script>
 </body>
